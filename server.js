@@ -5,7 +5,7 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
 const sessionConfig = require("./sessionConfig");
-const users = require("./data");
+const users = require("./users");
 const checkAuth = require("./middlewares/checkAuth");
 const app = express();
 const port = process.env.PORT || 7777;
@@ -32,8 +32,21 @@ app.get("/signup", (req, res) => {
     res.render("signup");
 });
 
+app.post("/signup", (req, res) => {
+    let newUser = req.body;
+    console.log('newUser: ', newUser);
+    users.push(newUser);
+    console.log('users: ', users);
+    res.redirect("/login");
+});
+
+
 app.get("/login", (req, res) => {
     res.render("login");
+});
+
+app.post("/login", (req, res) => {
+    res.redirect("/");
 });
 
 app.listen(port, () => {

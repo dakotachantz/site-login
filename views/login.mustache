@@ -15,17 +15,23 @@
             <nav>
                 <a href="/">Home</a>
                 <a href="/signup">Sign Up</a>
-                <a href="/login">Login</a>
+                <a class="selected" href="/login">Login</a>
             </nav>
         </header>
-        <h1>Welcome to the super awesome cool LOGIN page!</h1>
+        <h1>Login!</h1>
+        <h3>Type in your username and password</h3>
+
+        {{#errors}}
+            <h4>{{.}}</h4>
+        {{/errors}}
+
         <form action="/login" method="post" class="login-form">
             <label for="username">Username <input type="text" name="username" placeholder="User Name"></label>
             <br>
             <label for="password">Password <input type="password" name="password" placeholder="Password"></label>
             <br>
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>
