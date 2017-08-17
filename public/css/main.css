@@ -28,6 +28,10 @@ nav {
     align-items: center;
 }
 
+.selected {
+    color: darkslateblue;
+}
+
 a {
     text-decoration: none;
     color: #FFFFFF;

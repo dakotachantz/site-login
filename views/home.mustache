@@ -13,9 +13,11 @@
     <div class="container">
         <header>
             <nav>
-                <a href="/">Home</a>
+                <a class="selected" href="/">Home</a> {{#user}}
+                <a href="/user">User</a>
+                <a href="/logout">Logout</a> {{/user}} {{^user}}
                 <a href="/signup">Sign Up</a>
-                <a href="/login">Login</a>
+                <a href="/login">Login</a> {{/user}}
             </nav>
         </header>
         <h1>Welcome to the super awesome cool home page.</h1>
