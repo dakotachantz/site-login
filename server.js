@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session(sessionConfig));
 
 app.get("/", (req, res) => {
-    // console.log(req.session);
-    res.render("home");
+    console.log(req.session);
+    res.render("home", { user: req.session.user });
 });
 
 app.get("/signup", (req, res) => {
@@ -46,7 +46,35 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    res.redirect("/");
+    let reqUsername = req.body.username;
+    let reqPassword = req.body.password;
+
+    let foundUser = users.find(user => user.username === reqUsername);
+    if (!foundUser) {
+        return res.render("login", { errors: ["User not found. Try again or click above on Sign Up to join the best website ever."] });
+    }
+
+    if (foundUser.password === reqPassword) {
+        delete foundUser.password;
+        req.session.user = foundUser;
+        res.redirect("/user");
+    } else {
+        return res.render("login", { errors: ["Password does not match."] });
+    }
+});
+
+app.get("/user", checkAuth, (req, res) => {
+    res.render("user", { user: req.session.user });
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            res.send("Error logging out");
+        } else {
+            res.redirect("/");
+        }
+    });
 });
 
 app.listen(port, () => {
