@@ -31,7 +31,7 @@ authRoutes.post("/login", (req, res) => {
     if (foundUser.password === reqPassword) {
         delete foundUser.password;
         req.session.user = foundUser;
-        res.redirect("../user/user");
+        res.redirect("/");
     } else {
         return res.render("login", { errors: ["Password does not match."] });
     }

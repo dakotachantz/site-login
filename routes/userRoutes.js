@@ -2,8 +2,13 @@ const express = require("express");
 const userRoutes = express.Router();
 const users = require("../users");
 
-userRoutes.get("/user", (req, res) => {
-    res.render("user", { user: req.session.user });
+userRoutes.get("/profile", (req, res) => {
+
+    if (req.session.user) {
+        return res.render("profile", { user: req.session.user });
+    } else {
+        res.redirect("/login")
+    }
 });
 
 userRoutes.get("/logout", (req, res) => {
