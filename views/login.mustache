@@ -14,8 +14,8 @@
         <header>
             <nav>
                 <a href="/">Home</a>
-                <a href="/signup">Sign Up</a>
-                <a class="selected" href="/login">Login</a>
+                <a href="/auth/signup">Sign Up</a>
+                <a class="selected" href="/auth/login">Login</a>
             </nav>
         </header>
         <h1>Login!</h1>
@@ -25,7 +25,7 @@
             <h4>{{.}}</h4>
         {{/errors}}
 
-        <form action="/login" method="post" class="login-form">
+        <form action="/auth/login" method="post" class="login-form">
             <label for="username">Username <input type="text" name="username" placeholder="User Name"></label>
             <br>
             <label for="password">Password <input type="password" name="password" placeholder="Password"></label>
