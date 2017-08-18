@@ -14,14 +14,19 @@
         <header>
             <nav>
                 <a class="selected" href="/">Home</a> {{#user}}
-                <a href="/user/user">User</a>
+                <a href="/user/profile">Profile</a>
                 <a href="/user/logout">Logout</a> {{/user}} {{^user}}
                 <a href="/auth/signup">Sign Up</a>
                 <a href="/auth/login">Login</a> {{/user}}
             </nav>
         </header>
         <h1>Welcome to the super awesome cool home page.</h1>
+        {{#user}}
+        <p>{{username}} is logged in!!!!</p>
+        {{/user}}
+        {{^user}}
         <p>This is where cool content will go.</p>
+        {{/user}}
     </div>
 </body>
 
